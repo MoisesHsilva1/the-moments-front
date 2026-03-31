@@ -1,31 +1,23 @@
+import React, { Suspense } from 'react';
 import {
   createBrowserRouter,
   RouterProvider,
   type RouteObject,
-  Navigate,
-} from "react-router";
-import React, { Suspense } from "react";
+} from 'react-router';
 
-const Layout = React.lazy(() => import("../components/organisms/Layout"));
-const NotFound = React.lazy(() => import("../components/organisms/NotFound"));
-const Login = React.lazy(() => import("../pages/Login"));
-const Register = React.lazy(() => import("../pages/Register"));
+const Layout = React.lazy(() => import('../components/organisms/Layout'));
+const NotFound = React.lazy(() => import('../components/organisms/NotFound'));
+const Login = React.lazy(() => import('../components/templates/LoginPage'));
+const Register = React.lazy(
+  () => import('../components/templates/RegisterPage'),
+);
+const Home = React.lazy(() => import('../components/templates/HomePage'));
+const Posts = React.lazy(() => import('../components/templates/PostsPage'));
 
 const AppRouter = () => {
-  const allRouteModules = import.meta.glob("./pages/**/*.tsx", {
-    eager: true,
-  }) as Record<string, { default: RouteObject[] }>;
-
-  const userModule = allRouteModules["./pages/index.tsx"];
-  const selectedRoutes: RouteObject[] = userModule?.default || [];
-
   const routes: RouteObject[] = [
     {
-      path: "/",
-      element: <Navigate to="/" replace={true} />,
-    },
-    {
-      path: "/login",
+      path: '/login',
       element: (
         <Suspense>
           <Login />
@@ -33,7 +25,7 @@ const AppRouter = () => {
       ),
     },
     {
-      path: "/register",
+      path: '/register',
       element: (
         <Suspense>
           <Register />
@@ -41,16 +33,34 @@ const AppRouter = () => {
       ),
     },
     {
-      path: "/",
+      path: '/',
       element: (
         <Suspense>
           <Layout />
         </Suspense>
       ),
-      children: selectedRoutes,
+      children: [
+        {
+          path: 'posts',
+          element: (
+            <Suspense>
+              <Posts />
+            </Suspense>
+          ),
+        },
+      ],
     },
     {
-      path: "*",
+      path: '/',
+      index: true,
+      element: (
+        <Suspense>
+          <Home />
+        </Suspense>
+      ),
+    },
+    {
+      path: '*',
       element: (
         <Suspense>
           <NotFound />
