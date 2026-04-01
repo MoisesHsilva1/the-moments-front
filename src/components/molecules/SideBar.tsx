@@ -1,8 +1,8 @@
-import { Home, User } from 'lucide-react';
-import * as React from 'react';
-import { useLocation, useNavigate } from 'react-router';
+import { Home } from "lucide-react";
+import * as React from "react";
+import { useLocation, useNavigate } from "react-router";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
   Sidebar,
   SidebarContent,
@@ -12,11 +12,11 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from '@/components/ui/sidebar';
+} from "@/components/ui/sidebar";
 
 const navItems = [
-  { title: 'Página Inicial', url: '/posts', icon: Home },
-  { title: 'Perfil', url: '/profile', icon: User },
+  { title: "Página Inicial", url: "/posts", icon: Home },
+  // { title: "Perfil", url: "/profile", icon: User },
 ];
 
 const SideBar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
@@ -49,15 +49,15 @@ const SideBar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
                         onClick={() => navigate(item.url)}
                         className={`group relative h-12 w-full justify-start gap-4 rounded-xl px-4 text-base font-semibold transition-all hover:bg-white/10 ${
                           isActive
-                            ? 'bg-white/5 text-white'
-                            : 'text-zinc-400 hover:text-white'
+                            ? "bg-white/5 text-white"
+                            : "text-zinc-400 hover:text-white"
                         }`}
                       >
                         <item.icon
                           className={`size-5 transition-colors ${
                             isActive
-                              ? 'text-[#E75E43]'
-                              : 'text-zinc-400 group-hover:text-white'
+                              ? "text-[#E75E43]"
+                              : "text-zinc-400 group-hover:text-white"
                           }`}
                           strokeWidth={isActive ? 2.5 : 2}
                         />

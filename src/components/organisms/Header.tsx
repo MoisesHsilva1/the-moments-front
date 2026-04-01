@@ -1,13 +1,12 @@
-import { Search } from 'lucide-react';
-import type React from 'react';
-import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { Search } from "lucide-react";
+import { useState } from "react";
+import { useNavigate } from "react-router";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
-} from '../ui/input-group';
-import { SidebarTrigger } from '../ui/sidebar';
+} from "../ui/input-group";
+import { SidebarTrigger } from "../ui/sidebar";
 
 const Header: React.FC = () => {
   const [isSearchExpanded, setIsSearchExpanded] = useState<boolean>(false);
@@ -21,7 +20,7 @@ const Header: React.FC = () => {
 
         <div
           className="cursor-pointer text-xl font-bold tracking-tighter text-white hover:opacity-80 transition-opacity"
-          onClick={() => navigate('/')}
+          onClick={() => navigate("/")}
         >
           The moments
         </div>
@@ -34,7 +33,7 @@ const Header: React.FC = () => {
       >
         <InputGroup
           className={`transition-all duration-300 ease-in-out border-white/20 hover:border-white/40 bg-zinc-900/50 rounded-full ${
-            isSearchExpanded ? 'w-64 sm:w-80' : 'w-10 sm:w-12 overflow-hidden'
+            isSearchExpanded ? "w-64 sm:w-80" : "w-10 sm:w-12 overflow-hidden"
           }`}
         >
           <InputGroupAddon
@@ -45,11 +44,11 @@ const Header: React.FC = () => {
             <Search className="size-4" />
           </InputGroupAddon>
           <InputGroupInput
-            placeholder="Pesquisar"
+            placeholder="Explore lugares por tags..."
             className={`transition-all duration-300 text-white placeholder:text-white/40 border-none bg-transparent ${
               isSearchExpanded
-                ? 'opacity-100 flex-1 px-3'
-                : 'opacity-0 w-0 p-0 pointer-events-none'
+                ? "opacity-100 flex-1 px-3"
+                : "opacity-0 w-0 p-0 pointer-events-none"
             }`}
             onFocus={() => setIsSearchExpanded(true)}
             onBlur={() => setIsSearchExpanded(false)}
