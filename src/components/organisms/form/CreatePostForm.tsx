@@ -1,8 +1,6 @@
-import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
-import { Loader2 } from "lucide-react";
 
 import { PostFormSchema, type PostInput } from "@/schemas/postSchema";
 import InputImage from "@/components/molecules/InputImage";
