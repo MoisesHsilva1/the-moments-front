@@ -3,7 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginSchema, type LoginOutput } from "@/schemas/authSchema";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+
 
 const inputBaseClass =
   "w-full rounded-2xl border-0 bg-zinc-900 px-4 py-3 text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-[#E75E43]";
@@ -42,7 +42,7 @@ const LoginForm = () => {
               type="email"
               autoComplete="email"
               placeholder="seu@email.com"
-              className={cn(inputBaseClass, errors.email && "ring-2 ring-red-500")}
+              className={`${inputBaseClass} ${errors.email ? "ring-2 ring-red-500" : ""}`}
             />
           )}
         />
@@ -64,7 +64,7 @@ const LoginForm = () => {
               type="password"
               autoComplete="current-password"
               placeholder="••••••••"
-              className={cn(inputBaseClass, errors.password && "ring-2 ring-red-500")}
+              className={`${inputBaseClass} ${errors.password ? "ring-2 ring-red-500" : ""}`}
             />
           )}
         />

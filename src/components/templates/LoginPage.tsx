@@ -1,6 +1,6 @@
-import { LoginForm } from '@/components/organisms/form/LoginForm';
+import { LoginForm } from "@/components/organisms/form/LoginForm";
 
-const LoginPage = () => {
+const LoginPage: React.FC = () => {
   return (
     <main className="relative flex min-h-[100dvh] w-full items-center justify-center overflow-hidden bg-zinc-950">
       <div

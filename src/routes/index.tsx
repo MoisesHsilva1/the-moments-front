@@ -1,23 +1,30 @@
-import React, { Suspense } from 'react';
+import React, { Suspense } from "react";
 import {
   createBrowserRouter,
   RouterProvider,
   type RouteObject,
-} from 'react-router';
+} from "react-router";
 
-const Layout = React.lazy(() => import('../components/organisms/Layout'));
-const NotFound = React.lazy(() => import('../components/organisms/NotFound'));
-const Login = React.lazy(() => import('../components/templates/LoginPage'));
+const Layout = React.lazy(() => import("../components/organisms/Layout"));
+const NotFound = React.lazy(() => import("../components/organisms/NotFound"));
+const Home = React.lazy(() => import("../components/templates/HomePage"));
+
+const Login = React.lazy(() => import("../components/templates/LoginPage"));
 const Register = React.lazy(
-  () => import('../components/templates/RegisterPage'),
+  () => import("../components/templates/RegisterPage"),
 );
-const Home = React.lazy(() => import('../components/templates/HomePage'));
-const Posts = React.lazy(() => import('../components/templates/PostsPage'));
+
+const Posts = React.lazy(
+  () => import("../components/templates/Post/PostsPage"),
+);
+const CreatePost = React.lazy(
+  () => import("../components/templates/Post/CreatePostPage"),
+);
 
 const AppRouter = () => {
   const routes: RouteObject[] = [
     {
-      path: '/login',
+      path: "/login",
       element: (
         <Suspense>
           <Login />
@@ -25,7 +32,7 @@ const AppRouter = () => {
       ),
     },
     {
-      path: '/register',
+      path: "/register",
       element: (
         <Suspense>
           <Register />
@@ -33,7 +40,7 @@ const AppRouter = () => {
       ),
     },
     {
-      path: '/',
+      path: "/",
       element: (
         <Suspense>
           <Layout />
@@ -41,17 +48,25 @@ const AppRouter = () => {
       ),
       children: [
         {
-          path: 'posts',
+          path: "posts",
           element: (
             <Suspense>
               <Posts />
             </Suspense>
           ),
         },
+        {
+          path: "posts/create",
+          element: (
+            <Suspense>
+              <CreatePost />
+            </Suspense>
+          ),
+        },
       ],
     },
     {
-      path: '/',
+      path: "/",
       index: true,
       element: (
         <Suspense>
@@ -60,7 +75,7 @@ const AppRouter = () => {
       ),
     },
     {
-      path: '*',
+      path: "*",
       element: (
         <Suspense>
           <NotFound />

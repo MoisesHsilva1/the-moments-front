@@ -80,7 +80,10 @@ const SideBar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
       </SidebarContent>
 
       <SidebarFooter className="p-4 bg-black">
-        <Button className="w-full rounded-full bg-[#E75E43] text-base font-bold text-white py-6 hover:bg-[#E75E43]/90">
+        <Button
+          className="w-full rounded-full bg-[#E75E43] text-base font-bold text-white py-6 hover:bg-[#E75E43]/90"
+          onClick={() => navigate("/posts/create")}
+        >
           Postar
         </Button>
       </SidebarFooter>

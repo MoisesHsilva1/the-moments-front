@@ -20,7 +20,7 @@ const Header: React.FC = () => {
 
         <div
           className="cursor-pointer text-xl font-bold tracking-tighter text-white hover:opacity-80 transition-opacity"
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/posts")}
         >
           The moments
         </div>

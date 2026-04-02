@@ -1,7 +1,7 @@
-import { Button } from '@/components/ui/button';
-import { useNavigate } from 'react-router';
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router";
 
-const NotFound = () => {
+const NotFound: React.FC = () => {
   const navigate = useNavigate();
 
   return (
@@ -19,7 +19,7 @@ const NotFound = () => {
             size="lg"
             className="mt-4"
             onClick={() => {
-              navigate('/');
+              navigate("/");
             }}
           >
             Voltar para Home

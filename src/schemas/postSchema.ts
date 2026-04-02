@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { TagsSchema } from "./shared/tagsSchema";
 
-export const PostSchema = z.object({
+export const PostFormSchema = z.object({
   id: z.number().optional(),
 
   title: z
@@ -28,8 +28,8 @@ export const PostSchema = z.object({
     .transform((val) => val ?? null)
     .pipe(z.number({ message: "Campo obrigatório" })),
 
-  tags: z.array(TagsSchema).optional(),
+  tags: z.array(TagsSchema).min(1, { message: "Selecione pelo menos uma tag" }),
 });
 
-export type PostInput = z.input<typeof PostSchema>;
-export type PostOutput = z.infer<typeof PostSchema>;
+export type PostInput = z.input<typeof PostFormSchema>;
+export type PostOutput = z.infer<typeof PostFormSchema>;

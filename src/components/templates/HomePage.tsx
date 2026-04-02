@@ -1,8 +1,8 @@
-import { ArrowDown } from 'lucide-react';
-import { useNavigate } from 'react-router';
-import { Button } from '../ui/button';
+import { ArrowDown } from "lucide-react";
+import { useNavigate } from "react-router";
+import { Button } from "../ui/button";
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
   const navigate = useNavigate();
 
   return (
@@ -25,7 +25,7 @@ const HomePage = () => {
         <article>
           <Button
             className="size-14 rounded-full mt-6 hover:scale-105 hover:opacity-95 active:scale-100"
-            onClick={() => navigate('/posts')}
+            onClick={() => navigate("/posts")}
           >
             <ArrowDown className="size-6 text-white" strokeWidth={2.5} />
           </Button>
