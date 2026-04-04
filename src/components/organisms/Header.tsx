@@ -1,15 +1,7 @@
-import { Search } from "lucide-react";
-import { useState } from "react";
 import { useNavigate } from "react-router";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupInput,
-} from "../ui/input-group";
 import { SidebarTrigger } from "../ui/sidebar";
 
 const Header: React.FC = () => {
-  const [isSearchExpanded, setIsSearchExpanded] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -31,7 +23,7 @@ const Header: React.FC = () => {
         onSubmit={(e) => e.preventDefault()}
         className="relative"
       >
-        <InputGroup
+        {/* <InputGroup
           className={`transition-all duration-300 ease-in-out border-white/20 hover:border-white/40 bg-zinc-900/50 rounded-full ${
             isSearchExpanded ? "w-64 sm:w-80" : "w-10 sm:w-12 overflow-hidden"
           }`}
@@ -53,7 +45,7 @@ const Header: React.FC = () => {
             onFocus={() => setIsSearchExpanded(true)}
             onBlur={() => setIsSearchExpanded(false)}
           />
-        </InputGroup>
+        </InputGroup> */}
       </form>
     </header>
   );

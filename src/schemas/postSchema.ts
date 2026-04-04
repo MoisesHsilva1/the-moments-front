@@ -16,11 +16,11 @@ export const PostFormSchema = z.object({
     .transform((val) => val ?? null)
     .pipe(z.string({ message: "Campo obrigatório" })),
 
-  imageUrl: z
-    .string()
-    .nullable()
-    .transform((val) => val ?? null)
-    .pipe(z.string({ message: "Campo obrigatório" })),
+  image: z
+    .custom<File>((val) => val instanceof File, "Imagem é obrigatória")
+    .nullable(),
+
+  imageUrl: z.string().nullable().optional(),
 
   stars: z
     .number()

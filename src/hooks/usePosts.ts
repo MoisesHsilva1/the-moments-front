@@ -3,6 +3,9 @@ import {
   type UseMutationResult,
   type UseQueryResult,
   useMutation,
+  useInfiniteQuery,
+  type UseInfiniteQueryResult,
+  type InfiniteData,
 } from "@tanstack/react-query";
 import { fetch, create } from "@/services/posts";
 
@@ -18,6 +21,26 @@ export function usePostFetch(
   return useQuery({
     queryKey: ["posts", options],
     queryFn: () => fetch(options),
+    enabled,
+  });
+}
+
+export function usePostInfiniteFetch(
+  enabled: boolean,
+  limit: number = 10,
+): UseInfiniteQueryResult<
+  InfiniteData<ApiMultipleResponseInterface<PostOutput>>,
+  Error
+> {
+  return useInfiniteQuery({
+    queryKey: ["posts", "infinite"],
+    queryFn: ({ pageParam = 0 }) =>
+      fetch({ limit, offset: pageParam as number }),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage, allPages) => {
+      const currentTotal = allPages.length * limit;
+      return currentTotal < lastPage.total ? currentTotal : undefined;
+    },
     enabled,
   });
 }

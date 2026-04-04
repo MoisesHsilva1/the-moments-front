@@ -6,13 +6,16 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 
 interface InputImageProps {
-  value?: string | null;
-  onChange: (value: string | null) => void;
+  value?: File | string | null;
+  onChange: (value: File | null) => void;
   error?: string;
 }
 
 const InputImage: React.FC<InputImageProps> = ({ value, onChange, error }) => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [preview, setPreview] = useState<string | null>(
+    typeof value === "string" ? value : null,
+  );
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -25,18 +28,13 @@ const InputImage: React.FC<InputImageProps> = ({ value, onChange, error }) => {
   };
 
   const processFile = (file: File) => {
-    const reader = new FileReader();
-
     if (!file.type.startsWith("image/")) {
       return;
     }
 
-    reader.onload = (event) => {
-      if (event.target?.result) {
-        onChange(event.target.result as string);
-      }
-    };
-    reader.readAsDataURL(file);
+    const objectUrl = URL.createObjectURL(file);
+    setPreview(objectUrl);
+    onChange(file);
   };
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
@@ -57,6 +55,7 @@ const InputImage: React.FC<InputImageProps> = ({ value, onChange, error }) => {
   const handleRemove = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    setPreview(null);
     onChange(null);
   };
 
@@ -82,10 +81,10 @@ const InputImage: React.FC<InputImageProps> = ({ value, onChange, error }) => {
           title=""
         />
 
-        {value ? (
+        {preview ? (
           <>
             <img
-              src={value}
+              src={preview}
               alt="Preview"
               className="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-40"
             />
