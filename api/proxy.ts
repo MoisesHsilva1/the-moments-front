@@ -1,17 +1,19 @@
-// api/proxy.ts - Vercel Edge Function Proxy
 export const config = {
   runtime: 'edge',
 };
 
 export default async function handler(request: Request) {
   const url = new URL(request.url);
-  const path = url.pathname.replace(/^\/api\//, '');
-  const search = url.search;
+  const path = url.searchParams.get('path') || '';
+  
+  const searchParams = new URLSearchParams(url.search);
+  searchParams.delete('path');
+  const search = searchParams.toString();
 
   const backendUrl = process.env.BACKEND_URL || "";
   
   const targetUrl = new URL(
-    path + search,
+    path + (search ? `?${search}` : ''),
     backendUrl.endsWith('/') ? backendUrl : `${backendUrl}/`
   );
 
