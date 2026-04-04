@@ -6,7 +6,11 @@ import { type ApiSingleResponseInterface } from "@/types/interface/ApiSingleResp
 import Environment from "../config/env";
 
 export const axiosAPI: AxiosInstance = axios.create({
-  baseURL: `${Environment.VITE_BACKEND_URL}/api/v1/`,
+  // Se VITE_BACKEND_URL estiver vazio, usaremos caminhos relativos
+  // Isso ativa o proxy (/api) da Vercel em produção
+  baseURL: Environment.VITE_BACKEND_URL 
+    ? `${Environment.VITE_BACKEND_URL}/api/v1/`
+    : "/api/v1/",
 });
 
 const makeRequest = {
