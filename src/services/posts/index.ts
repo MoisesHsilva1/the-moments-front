@@ -16,5 +16,18 @@ export const fetch = (
 export const create = (
   data: PostInput,
 ): Promise<ApiSingleResponseInterface<PostOutput> | void> => {
-  return makeRequest.post<PostOutput>("posts", data);
+  const formData = new FormData();
+
+  if (data.image) {
+    formData.append("image", data.image);
+  }
+
+  const { image, ...postData } = data;
+
+  formData.append(
+    "post",
+    new Blob([JSON.stringify(postData)], { type: "application/json" }),
+  );
+
+  return makeRequest.post<PostOutput>("posts", formData);
 };

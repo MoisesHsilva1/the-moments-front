@@ -7,9 +7,6 @@ import Environment from "../config/env";
 
 export const axiosAPI: AxiosInstance = axios.create({
   baseURL: `${Environment.VITE_BACKEND_URL}/api/v1/`,
-  headers: {
-    "Content-Type": "application/json",
-  },
 });
 
 const makeRequest = {
@@ -40,13 +37,11 @@ const makeRequest = {
   post: async <T = void>(
     url: string,
     data: any,
-    isForm: boolean = false,
     config?: AxiosRequestConfig,
   ): Promise<T extends void ? void : ApiSingleResponseInterface<T>> => {
     const mergedConfig: AxiosRequestConfig = {
       ...config,
       headers: {
-        ...(isForm ? { "Content-Type": "multipart/form-data" } : {}),
         ...(config?.headers || {}),
       },
     };
