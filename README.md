@@ -143,4 +143,8 @@ Contribuições são bem-vindas e incentivadas. Este projeto também tem como ob
      ```bash
     .github/PULL_REQUEST_TEMPLATE.md     
 
+- Preencha corretamente:
+- Descrição da mudança
+- Contexto de negócio
+- Passos para teste
 
